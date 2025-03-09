@@ -1,5 +1,5 @@
 import javax.swing.*;
-import java.util.List;
+
 
 public class DataAnalysis {
     public static void main(String[] args) {
@@ -19,9 +19,5 @@ public class DataAnalysis {
 
     }
 
-    private void printData(DataSet dataSet) {
-        for (List<String> row : dataSet.getData()) {
-            System.out.println(row);
-        }
-    }
+
 }

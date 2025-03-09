@@ -1,4 +1,5 @@
 import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.FileReader;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class DataSet {
     private String filePath;
@@ -28,14 +30,18 @@ public class DataSet {
     }
 
     private void readData() {
-        try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
-            String[] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                data.add(List.of(nextLine)); // Convert array to list
-            }
+        try (CSVReader reader = new CSVReader(new FileReader(filePath))) { //try to create csv reader from a filereader from a given filepath
+            data = reader.readAll().stream() // Create a stream from the CSVReader
+                    .map(List::of) // Convert each line (array) to a List
+                    .collect(Collectors.toList());
         } catch (IOException | CsvValidationException e) {
             LOGGER.log(Level.SEVERE, "Error reading CSV file", e);
+        } catch (CsvException e) {
+            throw new RuntimeException(e);
         }
     }
 
+    public void printData() {
+        data.forEach(System.out::println);
+    }
 }
