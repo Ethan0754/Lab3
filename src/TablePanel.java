@@ -46,7 +46,6 @@ public class TablePanel extends JPanel implements ScrollPane, Filterable{
         mainTable.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 int selectedRow = mainTable.getSelectedRow(); //get selected row
-                System.out.println(selectedRow);
                 if (selectedRow >= 0) { //make sure a row was selected
                     updateDetailsPanel(selectedRow);
                 }

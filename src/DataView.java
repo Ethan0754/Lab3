@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DataView extends JPanel {
 
@@ -37,6 +38,7 @@ public class DataView extends JPanel {
 
 
     private DataSet dataSet;
+    private List<List<String>> filteredData;
 
     private Map<String, Dimension> dimensions = new HashMap<>() {{
         put("Main Panel", new Dimension(1200, 1000)); //main
@@ -50,6 +52,7 @@ public class DataView extends JPanel {
 
     public DataView(String filePath) {
         this.dataSet = new DataSet(filePath);
+        this.filteredData = dataSet.getData();
 
 
         // DataView config
@@ -76,58 +79,57 @@ public class DataView extends JPanel {
 
         // Sort JTable
         sortDropDown = new JComboBox<>(sorts);
-        sortDropDown.setSelectedIndex(2); // change filter to how data is initially sorted
+        sortDropDown.setSelectedIndex(1); // change filter to how data is initially sorted
         titlePanel.add(sortDropDown);
         sortDropDown.addActionListener(e -> {
-            List<List<String>> data = dataSet.getData();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             switch (sortDropDown.getSelectedIndex()) {
                 case 0: // Date (ascending)
-                    Collections.sort(data, Comparator.comparing((List<String> row) -> {
+                    Collections.sort(filteredData, Comparator.comparing((List<String> row) -> {
                         String dateString = row.get(0).replaceAll("[\\p{C}]", "");
                         return LocalDate.parse(dateString, formatter);
                     }));
                     break;
 
                 case 1: // Date Descending
-                    Collections.sort(data, Comparator.comparing((List<String> row) -> {
+                    Collections.sort(filteredData, Comparator.comparing((List<String> row) -> {
                         String dateString = row.get(0).replaceAll("[\\p{C}]", "");
                         return LocalDate.parse(dateString, formatter);
                     }).reversed());
                     break;
 
                 case 2: // Debt Held by Public Increasing
-                    Collections.sort(data, Comparator.comparing((List<String> row) -> {
+                    Collections.sort(filteredData, Comparator.comparing((List<String> row) -> {
                         return Double.parseDouble(row.get(1).replaceAll("[\\p{C}]", ""));
                     }));
                     break;
 
                 case 3: // Debt Held by Public Decreasing
-                    Collections.sort(data, Comparator.comparing((List<String> row) -> {
+                    Collections.sort(filteredData, Comparator.comparing((List<String> row) -> {
                         return Double.parseDouble(row.get(1).replaceAll("[\\p{C}]", ""));
                     }).reversed());
                     break;
 
                 case 4: // Intragovernmental Holdings Increasing
-                    Collections.sort(data, Comparator.comparing((List<String> row) -> {
+                    Collections.sort(filteredData, Comparator.comparing((List<String> row) -> {
                         return Double.parseDouble(row.get(2).replaceAll("[\\p{C}]", ""));
                     }));
                     break;
 
                 case 5: // Intragovernmental Holdings Decreasing
-                    Collections.sort(data, Comparator.comparing((List<String> row) -> {
+                    Collections.sort(filteredData, Comparator.comparing((List<String> row) -> {
                         return Double.parseDouble(row.get(2).replaceAll("[\\p{C}]", ""));
                     }).reversed());
                     break;
 
                 case 6: // Total Public Debt Increasing
-                    Collections.sort(data, Comparator.comparing((List<String> row) -> {
+                    Collections.sort(filteredData, Comparator.comparing((List<String> row) -> {
                         return Double.parseDouble(row.get(3).replaceAll("[\\p{C}]", ""));
                     }));
                     break;
 
                 case 7: // Total Public Debt Decreasing
-                    Collections.sort(data, Comparator.comparing((List<String> row) -> {
+                    Collections.sort(filteredData, Comparator.comparing((List<String> row) -> {
                         return Double.parseDouble(row.get(3).replaceAll("[\\p{C}]", ""));
                     }).reversed());
                     break;
@@ -135,7 +137,7 @@ public class DataView extends JPanel {
                 default:
                     throw new IllegalArgumentException("Invalid sort option selected.");
             }
-            updateData(data);
+            updateData(filteredData);
         });
 
         /*#############Filter############*/
@@ -154,7 +156,7 @@ public class DataView extends JPanel {
                 filterStates.put(box.getText(), box.isSelected()); // Update the state in the map
 
                 // Check each filter state to filter the data
-                List<List<String>> data = dataSet.getData();
+                List<List<String>> data = filteredData;
 
                 // Get the list of active year filters
                 List<Integer> activeYears = new ArrayList<>();
@@ -164,6 +166,7 @@ public class DataView extends JPanel {
                     }
                 }
 
+
                 // Filter the data to include rows where the year matches any active year filter
                 if (!activeYears.isEmpty()) {
                     data = data.stream()
@@ -171,7 +174,8 @@ public class DataView extends JPanel {
                                 String dateString = row.get(0).replaceAll("[\\p{C}]", "");
                                 LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                                 return activeYears.contains(date.getYear()); // Check if the year is in the active years list
-                            }).toList(); // Collect the filtered rows into a new list
+                            })
+                            .collect(Collectors.toCollection(ArrayList::new)); // Collect the filtered rows into a mutable list
                 }
                 // Update the table with the filtered data
                 updateData(data);
@@ -216,8 +220,10 @@ public class DataView extends JPanel {
     }
 
     public void updateData(List<List<String>> data) {
+
         tablePanel.setModel(tablePanel.setTableData(data, List.of(0, 3)));
         tablePanel.setData(data);
+        this.filteredData = dataSet.getData();
     }
 
 
