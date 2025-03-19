@@ -13,8 +13,8 @@ public class DataAnalysisConsole {
                 .ifPresent(row -> System.out.println("First: " + row));
 
         dataSet.getData().stream()
-                .skip(10)  // Skip first 10 rows
-                .findFirst()  // Get the next row (the 11th row)
+                .skip(9)  // Skip first 9 rows
+                .findFirst()  // Get the 10th row
                 .ifPresent(row -> System.out.println("Tenth: " + row));
 
 

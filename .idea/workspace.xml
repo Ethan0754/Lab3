@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50113db2-f137-47d6-b6e4-a7ef4614c476" name="Changes" comment="Merge remote-tracking branch 'origin/master'">
-      <change afterPath="$PROJECT_DIR$/src/DataAnalysisConsole.java" afterDir="false" />
+    <list default="true" id="50113db2-f137-47d6-b6e4-a7ef4614c476" name="Changes" comment="Added detail portion and starting filters">
+      <change afterPath="$PROJECT_DIR$/src/DetailsPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Filterable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ScrollPane.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TablePanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/testmain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DebtPenny_20200307_20250306.csv" beforeDir="false" afterPath="$PROJECT_DIR$/DebtPenny_20200307_20250306.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataAnalysis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataAnalysisConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataAnalysisConsole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataSet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataView.java" afterDir="false" />
     </list>
@@ -21,27 +24,31 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Ethan0754"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Ethan0754&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Ethan0754/Lab3.git",
-    "accountId": "ff2f359f-90d5-498c-af17-726280608c83"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Ethan0754/Lab3.git&quot;,
+    &quot;accountId&quot;: &quot;ff2f359f-90d5-498c-af17-726280608c83&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2u3G7TXZuGX5jfYVpOUMAw0LPFM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -52,11 +59,12 @@
   "keyToString": {
     "Application.DataAnalysis.executor": "Run",
     "Application.DataAnalysisConsole.executor": "Run",
+    "Application.testmain.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "S:/CS/Java/Lab3/libs/commons-lang3-3.17.0.jar",
+    "last_opened_file_path": "S:/CS/Java/lab2-oopwjava/src/EventListPanel.java",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -92,7 +100,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741469678461</updated>
-      <workItem from="1741469680019" duration="11284000" />
+      <workItem from="1741469680019" duration="11809000" />
+      <workItem from="1741910813731" duration="110000" />
+      <workItem from="1742257697336" duration="12702000" />
+      <workItem from="1742319772675" duration="327000" />
+      <workItem from="1742320211245" duration="12759000" />
+      <workItem from="1742352656149" duration="6828000" />
     </task>
     <task id="LOCAL-00001" summary="Added basic table design">
       <option name="closed" value="true" />
@@ -110,7 +123,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741481044894</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added console testing, finished gui portion, updated read me, added comments">
+      <option name="closed" value="true" />
+      <created>1741549866824</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741549866824</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,6 +140,29 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added basic table design" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'" />
+    <MESSAGE value="Added console testing, finished gui portion, updated read me, added comments" />
+    <MESSAGE value="Added detail portion and starting filters" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added detail portion and starting filters" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/testmain.java</url>
+          <line>12</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/DataView.java</url>
+          <line>219</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/DataView.java</url>
+          <line>176</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

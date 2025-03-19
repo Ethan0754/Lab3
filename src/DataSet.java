@@ -44,4 +44,8 @@ public class DataSet {
     public void printData() {
         data.forEach(System.out::println);
     }
+
+    public void setData(List<List<String>> data) {
+        this.data = data;
+    }
 }
