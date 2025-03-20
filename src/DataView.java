@@ -19,8 +19,8 @@ public class DataView extends JPanel {
     private TablePanel tablePanel;
 
     // bottom two data representations
-    private JPanel statsPanel;
-    private JPanel chartPanel;
+    private StatsPanel statsPanel;
+    private DataChartPanel chartPanel;
 
     // gui container panels
     private JPanel bottomHalf;
@@ -28,8 +28,9 @@ public class DataView extends JPanel {
 
     // filter variables
     private JCheckBox[] filterBoxes;
-    private String[] filters = {"2025", "2024", "2023", "2022", "2021", "2020", "Days w/ Decreasing Debt", "Days w/ Increasing Debt"};
+    private String[] filters = {"2025", "2024", "2023", "2022", "2021", "2020"};
     private final int numDateFilters = 6;
+    private Map<String, Boolean> filterStates;
 
     // sort variables
     private JComboBox<String> sortDropDown;
@@ -58,10 +59,6 @@ public class DataView extends JPanel {
         // DataView config
         setPreferredSize(dimensions.get("Main Panel"));
         setBackground(Color.WHITE);
-
-
-        // Create Table Panel Class/JPanel
-        tablePanel = new TablePanel(dataSet.getData());
 
 
         /*#################Title####################*/
@@ -141,11 +138,12 @@ public class DataView extends JPanel {
         });
 
         /*#############Filter############*/
-        // create a new jcheckbox for each filter with an actionlistener and update filterStates
 
-        Map<String, Boolean> filterStates = new HashMap<>();//Create a Map to store filter states
+
+        filterStates = new HashMap<>();//Create a Map to store filter states
         filterBoxes = new JCheckBox[filters.length];
 
+        // create a new jcheckbox for each filter with an actionlistener, update filterStates, and call updateData
         for (int i = 0; i < filters.length; i++) {
             filterBoxes[i] = new JCheckBox(filters[i]);
             titlePanel.add(filterBoxes[i]); // Add to GUI
@@ -156,45 +154,17 @@ public class DataView extends JPanel {
                 filterStates.put(box.getText(), box.isSelected()); // Update the state in the map
 
                 // Check each filter state to filter the data
-                List<List<String>> data = filteredData;
+                updateData(filteredData);
 
-                // Get the list of active year filters
-                List<Integer> activeYears = new ArrayList<>();
-                for (int j = 0; j < numDateFilters; j++) { // Only iterate through year filters
-                    if (filterStates.get(filters[j])) {
-                        activeYears.add(Integer.parseInt(filters[j])); // Add active year to the list
-                    }
-                }
-
-
-                // Filter the data to include rows where the year matches any active year filter
-                if (!activeYears.isEmpty()) {
-                    data = data.stream()
-                            .filter(row -> {
-                                String dateString = row.get(0).replaceAll("[\\p{C}]", "");
-                                LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                                return activeYears.contains(date.getYear()); // Check if the year is in the active years list
-                            })
-                            .collect(Collectors.toCollection(ArrayList::new)); // Collect the filtered rows into a mutable list
-                }
-                // Update the table with the filtered data
-                updateData(data);
             });
         }
 
-
-
-
-
-
-
-        // Stats Panel Config
-        statsPanel = new JPanel();
-        statsPanel.setBackground(Color.RED);
-
-        // Chart Panel Config
-        chartPanel = new JPanel();
-        chartPanel.setBackground(Color.BLUE);
+        // Create Table Panel
+        tablePanel = new TablePanel(dataSet.getData());
+        // Create Stats Panel
+        statsPanel = new StatsPanel();
+        // Create Chart Panel
+        chartPanel = new DataChartPanel();
 
 
         /*###########GUI Organization##############*/
@@ -204,8 +174,8 @@ public class DataView extends JPanel {
         thirdRow = new JPanel(); //container panel for the bottom two dataviews
         thirdRow.setLayout(new GridLayout(1, 2));
 
-        thirdRow.add(statsPanel);
         thirdRow.add(chartPanel);
+        thirdRow.add(statsPanel);
 
         bottomHalf = new JPanel(); //container panel all four of the dataviews
         bottomHalf.setLayout(new GridLayout(2, 1));
@@ -216,14 +186,45 @@ public class DataView extends JPanel {
 
         add(titlePanel, BorderLayout.PAGE_START); //add title panel to top
         add(bottomHalf); //add container panel
+
+        updateData(filteredData);
         /*#########################################*/
     }
 
     public void updateData(List<List<String>> data) {
+        data = applyFilters(data);
 
-        tablePanel.setModel(tablePanel.setTableData(data, List.of(0, 3)));
-        tablePanel.setData(data);
-        this.filteredData = dataSet.getData();
+        tablePanel.setModel(tablePanel.setTableData(data, List.of(0, 3))); //set model for the main table
+        tablePanel.setData(data); //set the data for the details table
+        statsPanel.updateStats(data);
+        chartPanel.updateChart(data);
+        this.filteredData = dataSet.getData(); //reset filter data
+    }
+
+    public List<List<String>> applyFilters(List<List<String>> data) {
+        // Get the list of active year filters
+        List<Integer> activeYears = new ArrayList<>();
+        for (int j = 0; j < numDateFilters; j++) { // Only iterate through year filters
+            if (filterStates.get(filters[j])) {
+                activeYears.add(Integer.parseInt(filters[j])); // Add active year to the list
+            }
+        }
+
+        // Filter the data to include rows where the year matches any active year filter
+        if (!activeYears.isEmpty()) {
+            data = data.stream()
+                    .filter(row -> {
+                        String dateString = row.get(0).replaceAll("[\\p{C}]", "");
+                        LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                        return activeYears.contains(date.getYear()); // Check if the year is in the active years list
+                    })
+                    .collect(Collectors.toCollection(ArrayList::new)); // Collect the filtered rows into a mutable list
+        }
+
+
+
+
+        return data;
     }
 
 

@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="50113db2-f137-47d6-b6e4-a7ef4614c476" name="Changes" comment="Added detail portion and starting filters">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/guicedee_services_jfreechart.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataChartPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/StatsPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Lab3.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TablePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TablePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -34,7 +37,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/Ethan0754/Lab3.git",
-    "accountId": "876c448f-e367-4ec7-87a2-0f08dce07aa8"
+    "accountId": "ff2f359f-90d5-498c-af17-726280608c83"
   }
 }]]></component>
   <component name="ProblemsViewState">
@@ -49,27 +52,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DataAnalysis.executor&quot;: &quot;Run&quot;,
-    &quot;Application.DataAnalysisConsole.executor&quot;: &quot;Run&quot;,
-    &quot;Application.testmain.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;S:/CS/Java/lab2-oopwjava/src/EventListPanel.java&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DataAnalysis.executor": "Run",
+    "Application.DataAnalysisConsole.executor": "Run",
+    "Application.testmain.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "S:/CS/Java/lab2-oopwjava/src/EventListPanel.java",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="S:\CS\Java\Lab3\libs" />
@@ -81,8 +90,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.117" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.117" />
       </set>
     </attachedChunks>
   </component>
@@ -101,6 +110,7 @@
       <workItem from="1742320211245" duration="12759000" />
       <workItem from="1742352656149" duration="6828000" />
       <workItem from="1742399653040" duration="3015000" />
+      <workItem from="1742431782614" duration="2776000" />
     </task>
     <task id="LOCAL-00001" summary="Added basic table design">
       <option name="closed" value="true" />
@@ -137,7 +147,8 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
     <MESSAGE value="Added console testing, finished gui portion, updated read me, added comments" />
     <MESSAGE value="Added detail portion and starting filters" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added detail portion and starting filters" />
+    <MESSAGE value="Added sorts and date filters.&#10;&#10;Bugs: filter and sort at same time causes issues because sort pulls a fresh dataset" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added sorts and date filters.&#10;&#10;Bugs: filter and sort at same time causes issues because sort pulls a fresh dataset" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
